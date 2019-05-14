@@ -7,34 +7,16 @@ public class part_2 {
 
     //    O(s1 + s2); s1, s2 length of strings
     public static Boolean isStringPermutation(String s1, String s2) {
-        char[] chars_s1 = s1.toCharArray();
-        Map<Character, Integer> freq = new HashMap<>();
-        for (char character : chars_s1) {
-            if (freq.get(character) == null) {
-                freq.put(character, 1);
-            } else {
-                int val = freq.get(character);
-                freq.put(character, val + 1);
-            }
-        }
 
-        char[] chars_s2 = s2.toCharArray();
-        Map<Character, Integer> freq2 = new HashMap<>();
-        for (char character : chars_s2) {
-            if (freq2.get(character) == null) {
-                freq2.put(character, 1);
-            } else {
-                int val = freq2.get(character);
-                freq2.put(character, val + 1);
-            }
-        }
+        Map<Character, Integer> freqs1 = get_freqs(s1);
+        Map<Character, Integer> freqs2 = get_freqs(s2);
 
-        for (Map.Entry<Character, Integer> entry1 : freq.entrySet()) {
+        for (Map.Entry<Character, Integer> entry1 : freqs1.entrySet()) {
             char key = entry1.getKey();
             int val = entry1.getValue();
 
-            if (freq2.containsKey(key)) {
-                int val2 = freq2.get(key);
+            if (freqs2.containsKey(key)) {
+                int val2 = freqs2.get(key);
                 if (val2 != val) {
                     return Boolean.FALSE;
                 }
@@ -43,6 +25,21 @@ public class part_2 {
             }
         }
         return Boolean.TRUE;
+    }
+
+    //    Helper function to get frequencies of characters in string
+    private static Map<Character, Integer> get_freqs(String input) {
+        char[] chars_input = input.toCharArray();
+        Map<Character, Integer> freqs = new HashMap<>();
+        for (char character : chars_input) {
+            if (freqs.get(character) == null) {
+                freqs.put(character, 1);
+            } else {
+                int val = freqs.get(character);
+                freqs.put(character, val + 1);
+            }
+        }
+        return freqs;
     }
 
     //    O(n^2); n = length of inputArray
