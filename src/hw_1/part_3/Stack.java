@@ -9,7 +9,7 @@ public class Stack {
     private Integer size;
     private ArrayList<Integer> stack;
 
-    private Stack() {
+    public Stack() {
         stack = new ArrayList<>();
         size = 0;
         min = null;

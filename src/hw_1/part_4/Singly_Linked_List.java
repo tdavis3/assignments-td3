@@ -5,7 +5,7 @@ public class Singly_Linked_List {
     private Node head;
     private Node end;
 
-    private Singly_Linked_List() {
+    public Singly_Linked_List() {
         size = 0;
         head = null;
         end = null;

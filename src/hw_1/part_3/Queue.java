@@ -8,7 +8,7 @@ public class Queue {
     private Integer size;
     private ArrayList<Integer> queue;
 
-    private Queue() {
+    public Queue() {
         queue = new ArrayList<>();
         size = 0;
     }
