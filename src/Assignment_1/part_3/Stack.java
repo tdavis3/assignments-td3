@@ -1,4 +1,4 @@
-package hw_1.part_3;
+package Assignment_1.part_3;
 
 import java.util.ArrayList;
 
@@ -7,9 +7,11 @@ public class Stack {
 
     private Integer min;
     private Integer size;
+    private ArrayList<Integer> min_stack;
     private ArrayList<Integer> stack;
 
     public Stack() {
+        min_stack = new ArrayList<>();
         stack = new ArrayList<>();
         size = 0;
         min = null;
@@ -20,57 +22,54 @@ public class Stack {
         stack.push(42);
         stack.push(9000);
         stack.push(50);
+        stack.push(33);
+        System.out.println(stack.min());
+        stack.pop();
         System.out.println(stack.min());
         System.out.println(stack.pop());
     }
 
-    private void push(Integer to_top) {
-        if (min == null) {
-            min = to_top;
-        } else if (to_top < min) {
-            min = to_top;
+    public void push(Integer to_top) {
+        if (min_stack.size() == 0) {
+            min_stack.add(0, to_top);
+        } else if (to_top <= min_stack.get(0)) {
+            min_stack.add(0, to_top);
         }
+
         stack.add(0, to_top);
         size += 1;
     }
 
-    private Integer pop() {
+    public Integer pop() {
         if (this.isEmpty()) {
             throw new IllegalCallerException("The stack is empty. Cannot pop anything off the top.");
         }
         Integer val = stack.get(0);
         stack.remove(0);
         size -= 1;
-        if (val.equals(min)) {
-            Integer new_minimum = null;
-            for (Integer num : stack) {
-                if (new_minimum == null) {
-                    new_minimum = num;
-                } else if (num < new_minimum) {
-                    new_minimum = num;
-                }
-            }
-            min = new_minimum;
+
+        if (val == min_stack.get(0)) {
+            min_stack.remove(0);
         }
         return val;
     }
 
-    private Integer top() {
+    public Integer top() {
         return stack.get(0);
     }
 
-    private Integer size() {
+    public Integer size() {
         return size;
     }
 
-    private Boolean isEmpty() {
+    public Boolean isEmpty() {
         if (size == 0) {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
     }
 
-    private Integer min() {
-        return min;
+    public Integer min() {
+        return min_stack.get(0);
     }
 }
