@@ -1,4 +1,8 @@
-package hw_1.part_4;
+package Assignment_1.part_4;
+
+import Assignment_1.part_3.Stack;
+
+import java.util.HashMap;
 
 public class Singly_Linked_List {
     private Integer size;
@@ -88,8 +92,17 @@ public class Singly_Linked_List {
         return size;
     }
 
-    private void hasCycle() {
-//        TODO - Run DFS for cycle detection
+    private Boolean hasCycle() {
+        HashMap<Integer, Boolean> visited = new HashMap<>();
+        Stack dfs_stack = new Stack();
+        Node curr = head;
+        for (int i = 0; i < size; i++) {
+            curr = curr.get_right();
+            Integer key = curr.get_val();
+            dfs_stack.push(key);
+            visited.put(key, Boolean.TRUE);
+        }
+        return false;
     }
 
     private void is_palindrome() {

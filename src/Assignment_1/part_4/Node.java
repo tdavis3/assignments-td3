@@ -1,4 +1,4 @@
-package hw_1.part_4;
+package Assignment_1.part_4;
 
 public class Node {
     private Node right;
